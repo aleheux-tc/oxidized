@@ -12,7 +12,10 @@ class Adtran < Oxidized::Model
     cfg
   end
 
-  cmd 'show running-config'
+  cmd 'show running-config' do |cfg|
+    cfg.gsub! /! Created .*/, ''
+    cfg
+  end
 
   cfg :ssh do
     post_login do
